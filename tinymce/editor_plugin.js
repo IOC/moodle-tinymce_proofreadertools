@@ -34,24 +34,39 @@
          * @param {string} url Absolute URL to where the plugin is located.
          */
         init : function(ed, url) {
+
             ed.addCommand('mceCorrectorIcon', function() {
                 var n, p;
+
+                ed.formatter.register('blauioc', {
+                inline : 'span', styles : {color : '#0000ff'}});
+
                 if (!ed.selection.getContent()) {
-                    ed.execCommand("foreColor",false,"#006699");
-                    ed.selection.setContent('[');
-                    var bm = ed.selection.getBookmark();
-                    ed.selection.setContent(']');
-                    ed.selection.moveToBookmark(bm);
+
+                    ed.formatter.apply('blauioc');
+                    ed.selection.setContent('[ ]');
+                    ed.selection.setContent('&nbsp;')
+                    ed.formatter.remove('blauioc');
+
+
                 } else {
-                    ed.execCommand("foreColor",false,"#006699");
+                    var start = ed.selection.getBookmark();
                     var select = ed.selection.getContent({format : 'text'});
-                    ed.selection.setContent('[' + ed.selection.getContent() +']');
-                    ed.execCommand("foreColor",false,"#006699");
+
+                    ed.selection.setContent( '[' + select +']');
+
+                    var end = ed.selection.getBookmark();
+
+                    ed.selection.moveToBookmark(start);
+                    ed.formatter.apply('blauioc');
+                    ed.selection.moveToBookmark(end);
+                    ed.formatter.remove('blauioc');
+
                 }
             });
 
             ed.addCommand('mceBlueIcon', function() {
-                ed.execCommand("foreColor",false,"#006699");
+                ed.execCommand("foreColor",false,"#0000ff");
             });
 
             ed.addCommand('mceRedIcon', function() {

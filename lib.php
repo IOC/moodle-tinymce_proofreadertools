@@ -36,7 +36,7 @@ class tinymce_proofreadertools extends editor_tinymce_plugin {
 
         $course = $PAGE->course;
 
-        if (!$course || !$PAGE->cm || !has_capability('moodle/course:manageactivities', $context)) {
+        if (!$course || !$PAGE->cm || !has_capability('gradereport/grader:view', $context)) {
             return;
         }
 
