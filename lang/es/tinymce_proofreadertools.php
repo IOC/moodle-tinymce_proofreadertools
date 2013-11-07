@@ -17,8 +17,13 @@
 /**
  * Strings for Moodle emoticon plugin.
  *
+<<<<<<< HEAD
+ * @package   tinymce_moodleemoticon
+ * @copyright 2012 The Open University
+=======
  * @package   tinymce_proofreadertools
  * @copyright 2013 Institut Obert de Catalunya
+>>>>>>> 4be58e07604b6936e9ed66f11f976def11591667
  * @license   http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 
