@@ -38,29 +38,23 @@
             ed.addCommand('mceCorrectorIcon', function() {
                 var n, p;
 
-                ed.formatter.register('blauioc', {
-                inline : 'span', styles : {color : '#0000ff'}});
+                ed.dom.loadCSS(url+'/proofreadertools.css');
 
                 if (!ed.selection.getContent()) {
 
-                    ed.formatter.apply('blauioc');
-                    ed.selection.setContent('[ ]');
-                    ed.selection.setContent('&nbsp;')
-                    ed.formatter.remove('blauioc');
+                    ed.selection.setContent('<span class = "blauioc">[');
+                    var start = ed.selection.getBookmark();
+                    ed.selection.setContent(']</span>');
+                    ed.selection.setContent('&nbsp;');
+
+                    ed.selection.moveToBookmark(start);
 
 
                 } else {
                     var start = ed.selection.getBookmark();
-                    var select = ed.selection.getContent({format : 'text'});
+                    var select = ed.selection.getContent();
 
-                    ed.selection.setContent( '[' + select +']');
-
-                    var end = ed.selection.getBookmark();
-
-                    ed.selection.moveToBookmark(start);
-                    ed.formatter.apply('blauioc');
-                    ed.selection.moveToBookmark(end);
-                    ed.formatter.remove('blauioc');
+                    ed.selection.setContent( '<span class = "blauioc">[' + select +']</span>');
 
                 }
             });
