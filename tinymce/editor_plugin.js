@@ -34,11 +34,10 @@
          * @param {string} url Absolute URL to where the plugin is located.
          */
         init : function(ed, url) {
+            ed.contentCSS.push(url + '/proofreadertools.css');
 
             ed.addCommand('mceCorrectorIcon', function() {
                 var n, p;
-
-                ed.dom.loadCSS(url+'/proofreadertools.css');
 
                 if (!ed.selection.getContent()) {
 
